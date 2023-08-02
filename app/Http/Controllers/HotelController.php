@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Nette\Utils\Image;
 
 class HotelController extends Controller
 {
@@ -24,17 +26,35 @@ class HotelController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:category,id',
-            'code' => 'required',
+            'code' => 'required|string|max:255',
             'price_max' => 'required|numeric|greater_than_field:price_min',
             'price_min' => 'required|numeric|less_than_field:price_max',
+            'category_id' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
             'sale_day' => 'required|greater_than_today',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-        $hotel = Hotel::create($validatedData);
+        // Lưu thông tin khách sạn vào database
+        $hotel = new Hotel();
+        $hotel->name = $request->input('name');
+        $hotel->code = $request->input('code');
+        $hotel->price_max = $request->input('price_max');
+        $hotel->price_min = $request->input('price_min');
+        $hotel->category_id = $request->input('category_id');
+        $hotel->sale_day = $request->input('sale_day');
+
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
+
+        $hotel->image = $imageName;
+        $hotel->save();
 
         return response()->json($hotel, 201);
     }
@@ -62,18 +82,24 @@ class HotelController extends Controller
             'price_max' => 'required|numeric|greater_than_field:price_min',
             'price_min' => 'required|numeric|less_than_field:price_max',
             'sale_day' => 'required|greater_than_today',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
         ]);
-        if ($validate->fails()) {
-            return response()->json(['errors' => $validate->errors()], 422);
-        }
+
 
         $hotel = Hotel::find($id);
-        if (!$hotel) {
-            return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
-        }
+        $hotel->name = $request->input('name');
+        $hotel->code = $request->input('code');
+        $hotel->price_max = $request->input('price_max');
+        $hotel->price_min = $request->input('price_min');
+        $hotel->category_id = $request->input('category_id');
+        $hotel->sale_day = $request->input('sale_day');
 
-        $hotel->update($request->all());
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
 
-        return response()->json(['message' => 'Cập nhật thành công'], 200);
+        $hotel->image = $imageName;
+        $hotel->save();
+        return response()->json($hotel, 201);
     }
 }

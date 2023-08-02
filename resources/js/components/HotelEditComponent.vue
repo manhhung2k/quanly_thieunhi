@@ -8,6 +8,27 @@
                     Hotel Edit
                 </h1>
                 <form @submit.prevent="handleUpdate()">
+                    <div class="mt-3">
+                        <input
+                            type="file"
+                            ref="fileInput"
+                            @change="onFileChange"
+                        />
+                        <img v-if="imageUrl" :src="'/images/' + editedHotel.image" alt="Image" style="max-width: 200px; margin-top: 10px" />
+                        <div v-if="selectedFile" class="mt-2">
+                            <img
+                                :src="imagePreview"
+                                alt="Preview"
+                                style="max-width: 200px"
+                            />
+                            <button @click="removeImage" class="mt-2">
+                                Remove Image
+                            </button>
+                        </div>
+                        <p v-if="errors.image" class="text-red-500">
+                            {{ errors.image[0] }}
+                        </p>
+                    </div>
                     <div>
                         <label for="name">Name:</label>
                         <input type="text" id="name" v-model="editedHotel.name" />
@@ -102,12 +123,29 @@ export default {
             editedHotel: { ...this.hotels, ...this.categories },
             categories: [],
             errors: {},
+            imageUrl:"",
+            selectedFile: "",
         };
     },
     created() {
         this.fetchCategories();
+        this.imageUrl = '/images/' + this.editedHotel.image;
+    },
+    computed: {
+        imagePreview() {
+            return this.selectedFile
+                ? URL.createObjectURL(this.selectedFile)
+                : null;
+        },
     },
     methods: {
+        onFileChange(event) {
+            this.selectedFile = event.target.files[0];
+            this.imageUrl = "";
+        },
+        removeImage() {
+            this.selectedFile = null;
+        },
         fetchCategories() {
             axios
                 .get("/api/category")
@@ -120,8 +158,20 @@ export default {
         },
         handleUpdate() {
             const itemId = this.hotels.id;
+            let formData = new FormData();
+            formData.append("name", this.editedHotel.name);
+            formData.append("code", this.editedHotel.code);
+            formData.append("price_max", this.editedHotel.price_max);
+            formData.append("price_min", this.editedHotel.price_min);
+            formData.append("category_id", this.editedHotel.category_id);
+            formData.append("image", this.selectedFile);
+            formData.append("sale_day", this.editedHotel.sale_day);
             axios
-                .post(`/api/hotel/update/${itemId}`, this.editedHotel)
+                .post(`/api/hotel/update/${itemId}`,formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data", // Cần đặt header này khi gửi FormData chứa file
+                    },
+                })
                 .then(() => {
                     Toastify({
                         text: "Edit category successfully!",

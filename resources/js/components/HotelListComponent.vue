@@ -24,6 +24,7 @@
                     <table class="w-full -mt-4 table-auto">
                         <thead>
                             <tr class="text-center z-10">
+                            <th>Picture</th>
                             <th>Name</th>
                             <th>Code</th>
                             <th>Price Max</th>
@@ -35,6 +36,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="hotel in filteredHotels" :key="hotel.id" class="text-center mt-2 text-red-600">
+                            <td><img :src="'/images/' + hotel.image" alt="" class="h-10 w-10"></td>
                             <td>{{ hotel.name }}</td>
                             <td>{{ hotel.code }}</td>
                             <td>{{ hotel.price_max }}</td>

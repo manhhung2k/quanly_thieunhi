@@ -8,7 +8,27 @@
                     Hotel Create
                 </h1>
                 <form @submit.prevent="handleSubmit">
-                    <div>
+                    <div class="mt-3">
+                        <input
+                            type="file"
+                            ref="fileInput"
+                            @change="onFileChange"
+                        />
+                        <div v-if="selectedFile" class="mt-2">
+                            <img
+                                :src="imagePreview"
+                                alt="Preview"
+                                style="max-width: 200px"
+                            />
+                            <button @click="removeImage" class="mt-2">
+                                Remove Image
+                            </button>
+                        </div>
+                        <p v-if="errors.image" class="text-red-500">
+                            {{ errors.image[0] }}
+                        </p>
+                    </div>
+                    <div class="mt-3">
                         <label for="name">Name:</label>
                         <input type="text" id="name" v-model="hotel.name" />
                         <p v-if="errors.name" class="text-red-500">
@@ -47,10 +67,7 @@
                     <div class="flex gap-6 mt-3">
                         <div class="float-left">
                             <label for="category" class="mr-2">Category:</label>
-                            <select
-                                v-model="hotel.category_id"
-                                class="w-24"
-                            >
+                            <select v-model="hotel.category_id" class="w-24">
                                 <option
                                     v-for="category in categories"
                                     :value="category.id"
@@ -99,16 +116,34 @@ export default {
         return {
             hotel: {
                 name: "",
+                code: "",
+                price_max: "",
+                price_min: "",
                 category_id: null,
+                image: null,
             },
             categories: [],
             errors: {},
+            selectedFile: null,
         };
     },
     created() {
         this.fetchCategories();
     },
+    computed: {
+        imagePreview() {
+            return this.selectedFile
+                ? URL.createObjectURL(this.selectedFile)
+                : null;
+        },
+    },
     methods: {
+        onFileChange(event) {
+            this.selectedFile = event.target.files[0];
+        },
+        removeImage() {
+            this.selectedFile = null;
+        },
         fetchCategories() {
             axios
                 .get("/api/category")
@@ -120,8 +155,20 @@ export default {
                 });
         },
         handleSubmit() {
+            let formData = new FormData();
+            formData.append("name", this.hotel.name);
+            formData.append("code", this.hotel.code);
+            formData.append("price_max", this.hotel.price_max);
+            formData.append("price_min", this.hotel.price_min);
+            formData.append("category_id", this.hotel.category_id);
+            formData.append("image", this.selectedFile);
+            formData.append("sale_day", this.hotel.sale_day);
             axios
-                .post("/api/hotel/create", this.hotel)
+                .post("/api/hotel/create", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data", // Cần đặt header này khi gửi FormData chứa file
+                    },
+                })
                 .then((response) => {
                     Toastify({
                         text: "Add category successfully!",
@@ -175,7 +222,7 @@ button[type="submit"] {
 }
 button[type="text"]:hover {
     background-color: #ddb192;
-    color:brown;
+    color: brown;
 }
 option {
     border: 1px solid #33ffff;

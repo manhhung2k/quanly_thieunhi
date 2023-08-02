@@ -16,6 +16,7 @@ class Hotel extends Model
         'price_min',
         'category_id',
         'sale_day',
+        'image',
     ];
     public function category()
     {
