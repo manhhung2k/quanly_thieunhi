@@ -17,36 +17,43 @@
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9 12l4-4-4-4V1H7v7H2v2h5v7l4-4z"/></svg>
                         </div>
-                    </div> 
+                    </div>
                 </div>
 
-                <table class="w-full mt-4 table-auto">
-                    <tr class="text-center">
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Price Max</th>
-                        <th>Price Min</th>
-                        <th>Category</th>
-                        <th>Sale Day</th>
-                        <th>Option</th>
-                    </tr>
-                    <tr v-for="hotel in filteredHotels" :key="hotel.id" class="text-center mt-2 text-red-600">
-                        <td>{{ hotel.name }}</td>
-                        <td>{{ hotel.code }}</td>
-                        <td>{{ hotel.price_max }}</td>
-                        <td>{{ hotel.price_min }}</td>
-                        <td>{{ hotel.category.name }}</td>
-                        <td>{{ hotel.sale_day }}</td>
-                        <td>
-                            <button @click="handleDelete(hotel.id)">
-                                Delete
-                            </button>
-                            <button @click="handleEditHotel(hotel.id)" class="ml-4">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                </table>
+                <div class="table-list pt-4 mt-10">
+                    <table class="w-full -mt-4 table-auto">
+                        <thead>
+                            <tr class="text-center z-10">
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>Price Max</th>
+                            <th>Price Min</th>
+                            <th>Category</th>
+                            <th>Sale Day</th>
+                            <th>Option</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="hotel in filteredHotels" :key="hotel.id" class="text-center mt-2 text-red-600">
+                            <td>{{ hotel.name }}</td>
+                            <td>{{ hotel.code }}</td>
+                            <td>{{ hotel.price_max }}</td>
+                            <td>{{ hotel.price_min }}</td>
+                            <td>{{ hotel.category.name }}</td>
+                            <td>{{ hotel.sale_day }}</td>
+                            <td>
+                                <button @click="handleDelete(hotel.id)">
+                                    Delete
+                                </button>
+                                <button @click="handleEditHotel(hotel.id)" class="ml-4">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -136,5 +143,14 @@ table {
 }
 table, th, td {
     border: 1px solid;
+  }
+.table-list {
+    overflow-y: auto;
+    height: 350px;
+}
+thead th {
+    position: sticky;
+    top: -20px;
+    background-color: #f2f2f2;
   }
 </style>
