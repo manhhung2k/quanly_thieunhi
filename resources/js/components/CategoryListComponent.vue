@@ -1,0 +1,126 @@
+<template>
+    <div class="all_create flex justify-center items-center">
+        <div
+            class="bg-white w-1/2 flex justify-center items-center p-6 rounded-3xl shadow-lg shadow-orange-900"
+        >
+
+            <div class="w-2/3 relative">
+                <div @click="handleCreate()" class="absolute -top-1 -right-16 cursor-pointer bg-slate-400 rounded-xl p-2">
+                    <p class="text-red-500">Create Category</p>
+                </div>
+                <h1 class="text-red-300 text-3xl font-bold text-center">
+                    Category List
+                </h1>
+
+                <table class="w-full mt-4 table-auto">
+                    <tr class="text-center">
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Option</th>
+                    </tr>
+                    <tr
+                        v-for="category in categories"
+                        :key="category.id"
+                        class="text-center mt-2 text-red-600"
+                    >
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.code }}</td>
+                        <td>{{ category.description }}</td>
+                        <td>
+                            <button @click="handleDelete(category.id)">
+                                Delete
+                            </button>
+                            <button
+                                @click="handleEdit(category.id)"
+                                class="ml-4"
+                            >
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+import Toastify from "toastify-js";
+export default {
+    data() {
+        return {
+            categories: [],
+        };
+    },
+    created() {
+        this.fetchUsers();
+    },
+    methods: {
+        fetchUsers() {
+            axios
+                .get("/api/category")
+                .then((response) => {
+                    this.categories = response.data;
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        async handleDelete(itemId) {
+            try {
+                await axios.delete(`/api/category/${itemId}`);
+                Toastify({
+                    text: "Delete category successfully!",
+                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
+                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
+                    backgroundColor: "green", // Màu nền của thông báo
+                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                }).showToast();
+                this.fetchUsers();
+            } catch (error) {
+                console.error(error);
+                Toastify({
+                    text: "Fail delete category successfully!",
+                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
+                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
+                    backgroundColor: "red", // Màu nền của thông báo
+                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                }).showToast();
+            }
+        },
+        handleEdit(itemId) {
+            // Chuyển hướng tới trang edit bằng Laravel route
+            window.location.href = `/category/edit/${itemId}`;
+        },
+        handleCreate(){
+            window.location.href = `/category/create`;
+        }
+    },
+};
+</script>
+<style>
+.all_create {
+    height: 94vh;
+}
+table {
+    border-collapse: collapse;
+}
+table,
+th,
+td {
+    border: 1px solid;
+    padding: 5px;
+}
+button {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+@media screen and (max-height: 967px) {
+    .all_create {
+        height: 93vh;
+    }
+}
+</style>
