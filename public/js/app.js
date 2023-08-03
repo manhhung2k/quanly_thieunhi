@@ -19858,7 +19858,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   },
   created: function created() {
     this.fetchCategories();
-    this.imageUrl = '/images/' + this.editedHotel.image;
+    this.imageUrl = "/images/" + this.editedHotel.image;
   },
   computed: {
     imagePreview: function imagePreview() {
@@ -19890,7 +19890,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       formData.append("price_max", this.editedHotel.price_max);
       formData.append("price_min", this.editedHotel.price_min);
       formData.append("category_id", this.editedHotel.category_id);
-      formData.append("image", this.selectedFile);
+      if (!this.selectedFile) {
+        formData.append("image_1", this.editedHotel.image);
+      } else {
+        formData.append("image", this.selectedFile);
+      }
       formData.append("sale_day", this.editedHotel.sale_day);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/hotel/update/".concat(itemId), formData, {
         headers: {
@@ -20493,7 +20497,7 @@ var _hoisted_7 = {
 };
 var _hoisted_8 = ["src"];
 var _hoisted_9 = {
-  key: 2,
+  key: 0,
   "class": "text-red-500"
 };
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
@@ -20586,7 +20590,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.removeImage && $options.removeImage.apply($options, arguments);
     }),
     "class": "mt-2"
-  }, " Remove Image ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.image[0]), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, " Remove Image "), $data.errors.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.image[0]), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "name",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {

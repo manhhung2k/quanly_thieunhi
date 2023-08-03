@@ -14,7 +14,12 @@
                             ref="fileInput"
                             @change="onFileChange"
                         />
-                        <img v-if="imageUrl" :src="'/images/' + editedHotel.image" alt="Image" style="max-width: 200px; margin-top: 10px" />
+                        <img
+                            v-if="imageUrl"
+                            :src="'/images/' + editedHotel.image"
+                            alt="Image"
+                            style="max-width: 200px; margin-top: 10px"
+                        />
                         <div v-if="selectedFile" class="mt-2">
                             <img
                                 :src="imagePreview"
@@ -24,21 +29,30 @@
                             <button @click="removeImage" class="mt-2">
                                 Remove Image
                             </button>
+                            <p v-if="errors.image" class="text-red-500">
+                                {{ errors.image[0] }}
+                            </p>
                         </div>
-                        <p v-if="errors.image" class="text-red-500">
-                            {{ errors.image[0] }}
-                        </p>
+
                     </div>
                     <div>
                         <label for="name">Name:</label>
-                        <input type="text" id="name" v-model="editedHotel.name" />
+                        <input
+                            type="text"
+                            id="name"
+                            v-model="editedHotel.name"
+                        />
                         <p v-if="errors.name" class="text-red-500">
                             {{ errors.name[0] }}
                         </p>
                     </div>
                     <div>
                         <label for="code">Code:</label>
-                        <input type="text" id="code" v-model="editedHotel.code" />
+                        <input
+                            type="text"
+                            id="code"
+                            v-model="editedHotel.code"
+                        />
                         <p v-if="errors.code" class="text-red-500">
                             {{ errors.code[0] }}
                         </p>
@@ -80,7 +94,6 @@
                                 >
                                     {{ category.name }}
                                 </option>
-
                             </select>
                             <p v-if="errors.category_id" class="text-red-500">
                                 {{ errors.category_id[0] }}
@@ -117,19 +130,19 @@ import axios from "axios";
 import Toastify from "toastify-js";
 
 export default {
-    props: ["hotels","categories"],
+    props: ["hotels", "categories"],
     data() {
         return {
             editedHotel: { ...this.hotels, ...this.categories },
             categories: [],
             errors: {},
-            imageUrl:"",
+            imageUrl: "",
             selectedFile: "",
         };
     },
     created() {
         this.fetchCategories();
-        this.imageUrl = '/images/' + this.editedHotel.image;
+        this.imageUrl = "/images/" + this.editedHotel.image;
     },
     computed: {
         imagePreview() {
@@ -164,10 +177,15 @@ export default {
             formData.append("price_max", this.editedHotel.price_max);
             formData.append("price_min", this.editedHotel.price_min);
             formData.append("category_id", this.editedHotel.category_id);
-            formData.append("image", this.selectedFile);
+            if (!this.selectedFile) {
+                formData.append("image_1", this.editedHotel.image);
+            } else {
+                formData.append("image", this.selectedFile);
+            }
+
             formData.append("sale_day", this.editedHotel.sale_day);
             axios
-                .post(`/api/hotel/update/${itemId}`,formData, {
+                .post(`/api/hotel/update/${itemId}`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data", // Cần đặt header này khi gửi FormData chứa file
                     },

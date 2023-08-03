@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -8,16 +9,18 @@ use Illuminate\Support\Facades\Hash;
 
 class CategoryController extends Controller
 {
-    public function viewList(){
+    public function viewList()
+    {
 
         return view('category.index');
     }
     public function index()
     {
-        $categories =Category::all();
+        $categories = Category::all();
         return response()->json($categories);
     }
-    public function viewCreate() {
+    public function viewCreate()
+    {
         return view('category.categorycreate');
     }
     public function store(Request $request)

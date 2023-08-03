@@ -7,7 +7,6 @@ use App\Models\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Nette\Utils\Image;
 
 class HotelController extends Controller
 {
@@ -69,23 +68,29 @@ class HotelController extends Controller
         $item->delete();
         return response()->json(['message' => 'Xóa mục thành công'], 200);
     }
-    public function edit($id) {
+    public function edit($id)
+    {
         $hotels = Hotel::find($id);
         $categories = Hotel::with('category')->find($id);
-        return view('hotel.edit', compact('hotels','categories'));
+        return view('hotel.edit', compact('hotels', 'categories'));
     }
-    public function update(Request $request, $id) {
-        $validate = Validator::make($request->all(), [
+    public function update(Request $request, $id)
+    {
+        $rules = [
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:category,id',
             'code' => 'required',
             'price_max' => 'required|numeric|greater_than_field:price_min',
             'price_min' => 'required|numeric|less_than_field:price_max',
             'sale_day' => 'required|greater_than_today',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
-        ]);
-
-
+        ];
+        if (empty($request->image_1)) {
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:4096';
+        }
+        $validate = Validator::make($request->all(), $rules);
+        if ($validate->fails()) {
+            return response()->json(['errors' => $validate->errors()], 422);
+        }
         $hotel = Hotel::find($id);
         $hotel->name = $request->input('name');
         $hotel->code = $request->input('code');
@@ -93,13 +98,17 @@ class HotelController extends Controller
         $hotel->price_min = $request->input('price_min');
         $hotel->category_id = $request->input('category_id');
         $hotel->sale_day = $request->input('sale_day');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $hotel->image = $imageName;
+        } else {
+            $hotel->image = $request->input('image_1');
+        }
 
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $imageName);
-
-        $hotel->image = $imageName;
         $hotel->save();
         return response()->json($hotel, 201);
+
     }
 }
