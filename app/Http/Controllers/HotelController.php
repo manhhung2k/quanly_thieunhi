@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportFile;
+use App\Exports\HotelExport;
 use App\Models\Category;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HotelController extends Controller
 {
@@ -110,5 +113,17 @@ class HotelController extends Controller
         $hotel->save();
         return response()->json($hotel, 201);
 
+    }
+    public function export()
+    {
+        $hotels = Hotel::all();
+
+        return Excel::download(new ExportFile($hotels), 'all_hotels.xlsx');
+    }
+    public function exportHotels(Category $category)
+    {
+        $export = new HotelExport($category);
+
+        return Excel::download($export, 'hotels_in_' . $category->name . '.xlsx');
     }
 }

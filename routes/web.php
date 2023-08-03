@@ -30,3 +30,9 @@ Route::get('/hotel',[HotelController::class, 'viewHotel'])->name('hotel');
 Route::get('/hotel/create', [HotelController::class, 'viewCreate'])->name('create_hotel');
 Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel_edit');
 
+Route::get('/hotel/export', [HotelController::class, 'export']);
+// routes/web.php
+
+Route::get('/export-hotels/{category}', [HotelController::class,'exportHotels'])->name('export.hotels');
+
+

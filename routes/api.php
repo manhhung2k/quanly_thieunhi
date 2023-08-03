@@ -34,3 +34,4 @@ Route::post('/hotel/create', [HotelController::class, 'store']);
 Route::delete('/hotel/{id}', [HotelController::class, 'destroy']);
 Route::get('/hotel/edit/{id}', [HotelController::class, 'edit']);
 Route::post('/hotel/update/{id}', [HotelController::class, 'update']);
+
