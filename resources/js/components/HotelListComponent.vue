@@ -35,6 +35,12 @@
                     >
                         <p class="text-red-500">Export Excel File</p>
                     </div>
+                    <div
+                        @click="handleImport()"
+                        class="cursor-pointer bg-slate-400 rounded-xl p-2"
+                    >
+                        <p class="text-red-500">Import Excel File</p>
+                    </div>
                 </div>
 
                 <div class="table-list pt-4 mt-10">
@@ -131,20 +137,20 @@ export default {
                 await axios.delete(`/api/hotel/${itemId}`);
                 Toastify({
                     text: "Delete category successfully!",
-                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                    backgroundColor: "green", // Màu nền của thông báo
-                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                    duration: 3000,
+                    gravity: "top",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
                 }).showToast();
                 this.fetchHotels();
             } catch (error) {
                 console.error(error);
                 Toastify({
                     text: "Fail delete category successfully!",
-                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                    backgroundColor: "red", // Màu nền của thông báo
-                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                    duration: 3000,
+                    gravity: "top",
+                    backgroundColor: "red",
+                    stopOnFocus: true,
                 }).showToast();
             }
         },
@@ -152,13 +158,10 @@ export default {
             window.location.href = `/hotel/create`;
         },
         handleEditHotel(itemId) {
-            // Chuyển hướng tới trang edit bằng Laravel route
             window.location.href = `/hotel/edit/${itemId}`;
         },
         handleExport() {
             if (this.selectedCategory) {
-                // Make an API call to export hotels by selected category
-                // Assuming you have an API route to export by selected category
                 window.location.href = `/export-hotels/${this.selectedCategory}`;
             } else {
                 window.location.href = `/hotel/export`;
@@ -167,11 +170,9 @@ export default {
     },
     computed: {
         filteredHotels() {
-            // Nếu không có category được chọn (selectedCategory rỗng), hiển thị tất cả khách sạn
             if (!this.selectedCategory) {
                 return this.hotels;
             }
-            // Nếu có category được chọn, lọc danh sách khách sạn theo category
             return this.hotels.filter(
                 (hotel) => hotel.category.id === this.selectedCategory
             );

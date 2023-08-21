@@ -19508,12 +19508,9 @@ __webpack_require__.r(__webpack_exports__);
         toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
           text: "Add category successfully!",
           duration: 3000,
-          // Thời gian hiển thị thông báo (3 giây)
           gravity: "top",
-          // Vị trí hiển thị thông báo (top hoặc bottom)
           backgroundColor: "green",
-          // Màu nền của thông báo
-          stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+          stopOnFocus: true
         }).showToast();
         _this.category = response.data;
         console.log(response.data);
@@ -19529,12 +19526,9 @@ __webpack_require__.r(__webpack_exports__);
           toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
             text: "Failed add category successfully!",
             duration: 3000,
-            // Thời gian hiển thị thông báo (3 giây)
             gravity: "top",
-            // Vị trí hiển thị thông báo (top hoặc bottom)
             backgroundColor: "red",
-            // Màu nền của thông báo
-            stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+            stopOnFocus: true
           }).showToast();
         }
       });
@@ -19599,12 +19593,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
                 text: "Delete category successfully!",
                 duration: 3000,
-                // Thời gian hiển thị thông báo (3 giây)
                 gravity: "top",
-                // Vị trí hiển thị thông báo (top hoặc bottom)
                 backgroundColor: "green",
-                // Màu nền của thông báo
-                stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                stopOnFocus: true
               }).showToast();
               _this2.fetchUsers();
               _context.next = 11;
@@ -19616,12 +19607,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
                 text: "Fail delete category successfully!",
                 duration: 3000,
-                // Thời gian hiển thị thông báo (3 giây)
                 gravity: "top",
-                // Vị trí hiển thị thông báo (top hoặc bottom)
                 backgroundColor: "red",
-                // Màu nền của thông báo
-                stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                stopOnFocus: true
               }).showToast();
             case 11:
             case "end":
@@ -19631,7 +19619,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     handleEdit: function handleEdit(itemId) {
-      // Chuyển hướng tới trang edit bằng Laravel route
       window.location.href = "/category/edit/".concat(itemId);
     },
     handleCreate: function handleCreate() {
@@ -19777,18 +19764,15 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("sale_day", this.hotel.sale_day);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/hotel/create", formData, {
         headers: {
-          "Content-Type": "multipart/form-data" // Cần đặt header này khi gửi FormData chứa file
+          "Content-Type": "multipart/form-data"
         }
       }).then(function (response) {
         toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
           text: "Add category successfully!",
           duration: 3000,
-          // Thời gian hiển thị thông báo (3 giây)
           gravity: "top",
-          // Vị trí hiển thị thông báo (top hoặc bottom)
           backgroundColor: "green",
-          // Màu nền của thông báo
-          stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+          stopOnFocus: true
         }).showToast();
         _this2.category = response.data;
         console.log(response.data);
@@ -19804,12 +19788,9 @@ __webpack_require__.r(__webpack_exports__);
           toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
             text: "Failed add category successfully!",
             duration: 3000,
-            // Thời gian hiển thị thông báo (3 giây)
             gravity: "top",
-            // Vị trí hiển thị thông báo (top hoặc bottom)
             backgroundColor: "red",
-            // Màu nền của thông báo
-            stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+            stopOnFocus: true
           }).showToast();
         }
       });
@@ -19898,7 +19879,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       formData.append("sale_day", this.editedHotel.sale_day);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/hotel/update/".concat(itemId), formData, {
         headers: {
-          "Content-Type": "multipart/form-data" // Cần đặt header này khi gửi FormData chứa file
+          "Content-Type": "multipart/form-data"
         }
       }).then(function () {
         toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
@@ -19995,12 +19976,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
                 text: "Delete category successfully!",
                 duration: 3000,
-                // Thời gian hiển thị thông báo (3 giây)
                 gravity: "top",
-                // Vị trí hiển thị thông báo (top hoặc bottom)
                 backgroundColor: "green",
-                // Màu nền của thông báo
-                stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                stopOnFocus: true
               }).showToast();
               _this3.fetchHotels();
               _context.next = 11;
@@ -20012,12 +19990,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               toastify_js__WEBPACK_IMPORTED_MODULE_1___default()({
                 text: "Fail delete category successfully!",
                 duration: 3000,
-                // Thời gian hiển thị thông báo (3 giây)
                 gravity: "top",
-                // Vị trí hiển thị thông báo (top hoặc bottom)
                 backgroundColor: "red",
-                // Màu nền của thông báo
-                stopOnFocus: true // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                stopOnFocus: true
               }).showToast();
             case 11:
             case "end":
@@ -20030,13 +20005,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       window.location.href = "/hotel/create";
     },
     handleEditHotel: function handleEditHotel(itemId) {
-      // Chuyển hướng tới trang edit bằng Laravel route
       window.location.href = "/hotel/edit/".concat(itemId);
     },
     handleExport: function handleExport() {
       if (this.selectedCategory) {
-        // Make an API call to export hotels by selected category
-        // Assuming you have an API route to export by selected category
         window.location.href = "/export-hotels/".concat(this.selectedCategory);
       } else {
         window.location.href = "/hotel/export";
@@ -20046,11 +20018,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     filteredHotels: function filteredHotels() {
       var _this4 = this;
-      // Nếu không có category được chọn (selectedCategory rỗng), hiển thị tất cả khách sạn
       if (!this.selectedCategory) {
         return this.hotels;
       }
-      // Nếu có category được chọn, lọc danh sách khách sạn theo category
       return this.hotels.filter(function (hotel) {
         return hotel.category.id === _this4.selectedCategory;
       });
@@ -20287,7 +20257,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.editedCategory.description = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.editedCategory.description]]), $data.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.description[0]), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Thêm các trường dữ liệu khác của mục ở đây (nếu cần) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.editedCategory.description]]), $data.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.description[0]), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.handleClose();
@@ -20694,18 +20664,22 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "text-red-500"
 }, "Export Excel File", -1 /* HOISTED */);
 var _hoisted_12 = [_hoisted_11];
-var _hoisted_13 = {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-red-500"
+}, "Import Excel File", -1 /* HOISTED */);
+var _hoisted_14 = [_hoisted_13];
+var _hoisted_15 = {
   "class": "table-list pt-4 mt-10"
 };
-var _hoisted_14 = {
+var _hoisted_16 = {
   "class": "w-full -mt-4 table-auto"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
   "class": "text-center z-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Picture"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Code"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Price Max"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Price Min"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Category"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Sale Day"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Option")])], -1 /* HOISTED */);
-var _hoisted_16 = ["src"];
-var _hoisted_17 = ["onClick"];
-var _hoisted_18 = ["onClick"];
+var _hoisted_18 = ["src"];
+var _hoisted_19 = ["onClick"];
+var _hoisted_20 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -20727,7 +20701,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.handleExport();
     }),
     "class": "cursor-pointer bg-slate-400 rounded-xl p-2"
-  }, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredHotels, function (hotel) {
+  }, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.handleImport();
+    }),
+    "class": "cursor-pointer bg-slate-400 rounded-xl p-2"
+  }, _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredHotels, function (hotel) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: hotel.id,
       "class": "text-center mt-2 text-red-600"
@@ -20735,16 +20714,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: '/images/' + hotel.image,
       alt: "",
       "class": "h-10 w-10"
-    }, null, 8 /* PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.code), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.price_max), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.price_min), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.category.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.sale_day), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, null, 8 /* PROPS */, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.code), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.price_max), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.price_min), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.category.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hotel.sale_day), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.handleDelete(hotel.id);
       }
-    }, " Delete ", 8 /* PROPS */, _hoisted_17), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, " Delete ", 8 /* PROPS */, _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.handleEditHotel(hotel.id);
       },
       "class": "ml-4"
-    }, " Edit ", 8 /* PROPS */, _hoisted_18)])]);
+    }, " Edit ", 8 /* PROPS */, _hoisted_20)])]);
   }), 128 /* KEYED_FRAGMENT */))])])])])])]);
 }
 
@@ -39375,7 +39354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CategoryCreate_vue_vue_type_template_id_45c021c5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoryCreate.vue?vue&type=template&id=45c021c5 */ "./resources/js/components/CategoryCreate.vue?vue&type=template&id=45c021c5");
 /* harmony import */ var _CategoryCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryCreate.vue?vue&type=script&lang=js */ "./resources/js/components/CategoryCreate.vue?vue&type=script&lang=js");
 /* harmony import */ var _CategoryCreate_vue_vue_type_style_index_0_id_45c021c5_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryCreate.vue?vue&type=style&index=0&id=45c021c5&lang=css */ "./resources/js/components/CategoryCreate.vue?vue&type=style&index=0&id=45c021c5&lang=css");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -39383,7 +39362,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CategoryCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryCreate_vue_vue_type_template_id_45c021c5__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryCreate.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CategoryCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryCreate_vue_vue_type_template_id_45c021c5__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryCreate.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -39406,7 +39385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CategoryListComponent_vue_vue_type_template_id_a5453874__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoryListComponent.vue?vue&type=template&id=a5453874 */ "./resources/js/components/CategoryListComponent.vue?vue&type=template&id=a5453874");
 /* harmony import */ var _CategoryListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryListComponent.vue?vue&type=script&lang=js */ "./resources/js/components/CategoryListComponent.vue?vue&type=script&lang=js");
 /* harmony import */ var _CategoryListComponent_vue_vue_type_style_index_0_id_a5453874_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryListComponent.vue?vue&type=style&index=0&id=a5453874&lang=css */ "./resources/js/components/CategoryListComponent.vue?vue&type=style&index=0&id=a5453874&lang=css");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -39414,7 +39393,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CategoryListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryListComponent_vue_vue_type_template_id_a5453874__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryListComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CategoryListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryListComponent_vue_vue_type_template_id_a5453874__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryListComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -39436,13 +39415,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _CategoryUpdate_vue_vue_type_template_id_3affe9dc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoryUpdate.vue?vue&type=template&id=3affe9dc */ "./resources/js/components/CategoryUpdate.vue?vue&type=template&id=3affe9dc");
 /* harmony import */ var _CategoryUpdate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryUpdate.vue?vue&type=script&lang=js */ "./resources/js/components/CategoryUpdate.vue?vue&type=script&lang=js");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_CategoryUpdate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryUpdate_vue_vue_type_template_id_3affe9dc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryUpdate.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_CategoryUpdate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CategoryUpdate_vue_vue_type_template_id_3affe9dc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/CategoryUpdate.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -39465,7 +39444,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HotelCreate_vue_vue_type_template_id_1047cab5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HotelCreate.vue?vue&type=template&id=1047cab5 */ "./resources/js/components/HotelCreate.vue?vue&type=template&id=1047cab5");
 /* harmony import */ var _HotelCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HotelCreate.vue?vue&type=script&lang=js */ "./resources/js/components/HotelCreate.vue?vue&type=script&lang=js");
 /* harmony import */ var _HotelCreate_vue_vue_type_style_index_0_id_1047cab5_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HotelCreate.vue?vue&type=style&index=0&id=1047cab5&lang=css */ "./resources/js/components/HotelCreate.vue?vue&type=style&index=0&id=1047cab5&lang=css");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -39473,7 +39452,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_HotelCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelCreate_vue_vue_type_template_id_1047cab5__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelCreate.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_HotelCreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelCreate_vue_vue_type_template_id_1047cab5__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelCreate.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -39495,13 +39474,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _HotelEditComponent_vue_vue_type_template_id_56723eea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HotelEditComponent.vue?vue&type=template&id=56723eea */ "./resources/js/components/HotelEditComponent.vue?vue&type=template&id=56723eea");
 /* harmony import */ var _HotelEditComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HotelEditComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HotelEditComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HotelEditComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelEditComponent_vue_vue_type_template_id_56723eea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelEditComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HotelEditComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelEditComponent_vue_vue_type_template_id_56723eea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelEditComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -39524,7 +39503,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HotelListComponent_vue_vue_type_template_id_7582ccd6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HotelListComponent.vue?vue&type=template&id=7582ccd6 */ "./resources/js/components/HotelListComponent.vue?vue&type=template&id=7582ccd6");
 /* harmony import */ var _HotelListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HotelListComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HotelListComponent.vue?vue&type=script&lang=js");
 /* harmony import */ var _HotelListComponent_vue_vue_type_style_index_0_id_7582ccd6_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HotelListComponent.vue?vue&type=style&index=0&id=7582ccd6&lang=css */ "./resources/js/components/HotelListComponent.vue?vue&type=style&index=0&id=7582ccd6&lang=css");
-/* harmony import */ var _var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -39532,7 +39511,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_var_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_HotelListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelListComponent_vue_vue_type_template_id_7582ccd6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelListComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,F_laragon_www_example_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_HotelListComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HotelListComponent_vue_vue_type_template_id_7582ccd6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HotelListComponent.vue"]])
 /* hot reload */
 if (false) {}
 

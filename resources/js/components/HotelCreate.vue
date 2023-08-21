@@ -166,16 +166,16 @@ export default {
             axios
                 .post("/api/hotel/create", formData, {
                     headers: {
-                        "Content-Type": "multipart/form-data", // Cần đặt header này khi gửi FormData chứa file
+                        "Content-Type": "multipart/form-data",
                     },
                 })
                 .then((response) => {
                     Toastify({
                         text: "Add category successfully!",
-                        duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                        gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                        backgroundColor: "green", // Màu nền của thông báo
-                        stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                        duration: 3000,
+                        gravity: "top",
+                        backgroundColor: "green",
+                        stopOnFocus: true,
                     }).showToast();
                     this.category = response.data;
                     console.log(response.data);
@@ -191,10 +191,10 @@ export default {
                         console.error(error);
                         Toastify({
                             text: "Failed add category successfully!",
-                            duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                            gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                            backgroundColor: "red", // Màu nền của thông báo
-                            stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                            duration: 3000,
+                            gravity: "top",
+                            backgroundColor: "red",
+                            stopOnFocus: true, 
                         }).showToast();
                     }
                 });

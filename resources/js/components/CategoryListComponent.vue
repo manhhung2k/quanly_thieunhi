@@ -80,25 +80,24 @@ export default {
                 await axios.delete(`/api/category/${itemId}`);
                 Toastify({
                     text: "Delete category successfully!",
-                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                    backgroundColor: "green", // Màu nền của thông báo
-                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                    duration: 3000,
+                    gravity: "top",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
                 }).showToast();
                 this.fetchUsers();
             } catch (error) {
                 console.error(error);
                 Toastify({
                     text: "Fail delete category successfully!",
-                    duration: 3000, // Thời gian hiển thị thông báo (3 giây)
-                    gravity: "top", // Vị trí hiển thị thông báo (top hoặc bottom)
-                    backgroundColor: "red", // Màu nền của thông báo
-                    stopOnFocus: true, // Dừng hiển thị thông báo khi người dùng tương tác với trang
+                    duration: 3000,
+                    gravity: "top",
+                    backgroundColor: "red",
+                    stopOnFocus: true,
                 }).showToast();
             }
         },
         handleEdit(itemId) {
-            // Chuyển hướng tới trang edit bằng Laravel route
             window.location.href = `/category/edit/${itemId}`;
         },
         handleCreate() {

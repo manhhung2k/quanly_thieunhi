@@ -187,7 +187,7 @@ export default {
             axios
                 .post(`/api/hotel/update/${itemId}`, formData, {
                     headers: {
-                        "Content-Type": "multipart/form-data", // Cần đặt header này khi gửi FormData chứa file
+                        "Content-Type": "multipart/form-data", 
                     },
                 })
                 .then(() => {

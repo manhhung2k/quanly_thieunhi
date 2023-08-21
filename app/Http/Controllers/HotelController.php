@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportFile;
 use App\Exports\HotelExport;
+use App\Http\Requests\ExcelUploadRequest;
+use App\Imports\HotelsImport;
 use App\Models\Category;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
@@ -125,5 +127,11 @@ class HotelController extends Controller
         $export = new HotelExport($category);
 
         return Excel::download($export, 'hotels_in_' . $category->name . '.xlsx');
+    }
+    public function import()
+    {
+        Excel::import(new HotelsImport, 'users.xlsx');
+
+        return redirect('/')->with('success', 'All good!');
     }
 }

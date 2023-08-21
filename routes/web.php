@@ -35,4 +35,3 @@ Route::get('/hotel/export', [HotelController::class, 'export']);
 
 Route::get('/export-hotels/{category}', [HotelController::class,'exportHotels'])->name('export.hotels');
 
-

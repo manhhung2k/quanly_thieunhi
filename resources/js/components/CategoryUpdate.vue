@@ -41,7 +41,6 @@
                             {{ errors.description[0] }}
                         </p>
                     </div>
-                    <!-- Thêm các trường dữ liệu khác của mục ở đây (nếu cần) -->
                     <div class="flex justify-center items-center mt-8 gap-8">
                         <button type="submit">Submit</button>
                         <button type="submit" @click="handleClose()">
