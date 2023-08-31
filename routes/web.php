@@ -33,5 +33,6 @@ Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel_ed
 Route::get('/hotel/export', [HotelController::class, 'export']);
 // routes/web.php
 
-Route::get('/export-hotels/{category}', [HotelController::class,'exportHotels'])->name('export.hotels');
-
+Route::get('/hotel/export-hotels/{category}', [HotelController::class,'exportHotels'])->name('export.hotels');
+Route::post('/hotel/importExcel', [HotelController::class,'importExcelCSV']);
+Route::get('/hotel/excel-csv-file', [HotelController::class, 'indexExcelCSV']);

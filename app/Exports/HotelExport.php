@@ -25,7 +25,6 @@ class HotelExport implements FromQuery, WithHeadings
     }
     public function headings(): array
     {
-        // Thay đổi phần này bằng tên trường dữ liệu thực tế của bạn
         return ['ID', 'Name', 'Code', 'Price Max', 'Price Min', 'Category Id', 'Sale Day', 'Created At' ,' Update At','Image'];
     }
 }

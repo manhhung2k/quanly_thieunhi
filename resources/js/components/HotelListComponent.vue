@@ -162,11 +162,14 @@ export default {
         },
         handleExport() {
             if (this.selectedCategory) {
-                window.location.href = `/export-hotels/${this.selectedCategory}`;
+                window.location.href = `/hotel/export-hotels/${this.selectedCategory}`;
             } else {
                 window.location.href = `/hotel/export`;
             }
         },
+        handleImport() {
+            window.location.href = `/hotel/excel-csv-file`;
+        }
     },
     computed: {
         filteredHotels() {
