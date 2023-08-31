@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -23,14 +24,10 @@ class CategoryController extends Controller
     {
         return view('category.categorycreate');
     }
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         // Validate dữ liệu form nếu cần thiết
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string',
-            'description' => 'required|string',
-        ]);
+        $validatedData = $request->validated();
 
         $category = Category::create($validatedData);
 
@@ -51,27 +48,17 @@ class CategoryController extends Controller
         $categories = Category::find($id);
         return view('category.edit', compact('categories'));
     }
-    public function update(Request $request, $id)
-    {
+    public function update(CategoryRequest $request, $id)
+{
+    $validatedData = $request->validated();
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'code' => 'required|string',
-            'description' => 'required|string',
-            // Thêm các rules validate khác cho các trường dữ liệu khác nếu cần
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $category = Category::find($id);
-        if (!$category) {
-            return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
-        }
-
-        $category->update($request->all());
-
-        return response()->json(['message' => 'Cập nhật thành công'], 200);
+    $category = Category::find($id);
+    if (!$category) {
+        return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
     }
+
+    $category->update($validatedData);
+
+    return response()->json(['message' => 'Cập nhật thành công'], 200);
+}
 }

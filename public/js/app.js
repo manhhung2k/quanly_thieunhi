@@ -20009,10 +20009,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     handleExport: function handleExport() {
       if (this.selectedCategory) {
-        window.location.href = "/export-hotels/".concat(this.selectedCategory);
+        window.location.href = "/hotel/export-hotels/".concat(this.selectedCategory);
       } else {
         window.location.href = "/hotel/export";
       }
+    },
+    handleImport: function handleImport() {
+      window.location.href = "/hotel/excel-csv-file";
     }
   },
   computed: {
@@ -20703,7 +20706,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "cursor-pointer bg-slate-400 rounded-xl p-2"
   }, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
-      return _ctx.handleImport();
+      return $options.handleImport();
     }),
     "class": "cursor-pointer bg-slate-400 rounded-xl p-2"
   }, _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredHotels, function (hotel) {

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportFile;
 use App\Exports\HotelExport;
+use App\Exports\HotelsExport;
 use App\Http\Requests\ExcelUploadRequest;
+use App\Http\Requests\HotelRequest;
 use App\Imports\HotelsImport;
 use App\Models\Category;
 use App\Models\Hotel;
@@ -28,23 +30,8 @@ class HotelController extends Controller
     {
         return view('hotel.hotelcreate');
     }
-    public function store(Request $request)
+    public function store(HotelRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:255',
-            'price_max' => 'required|numeric|greater_than_field:price_min',
-            'price_min' => 'required|numeric|less_than_field:price_max',
-            'category_id' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
-            'sale_day' => 'required|greater_than_today',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        // Lưu thông tin khách sạn vào database
         $hotel = new Hotel();
         $hotel->name = $request->input('name');
         $hotel->code = $request->input('code');
@@ -79,23 +66,8 @@ class HotelController extends Controller
         $categories = Hotel::with('category')->find($id);
         return view('hotel.edit', compact('hotels', 'categories'));
     }
-    public function update(Request $request, $id)
+    public function update(HotelRequest $request, $id)
     {
-        $rules = [
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:category,id',
-            'code' => 'required',
-            'price_max' => 'required|numeric|greater_than_field:price_min',
-            'price_min' => 'required|numeric|less_than_field:price_max',
-            'sale_day' => 'required|greater_than_today',
-        ];
-        if (empty($request->image_1)) {
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:4096';
-        }
-        $validate = Validator::make($request->all(), $rules);
-        if ($validate->fails()) {
-            return response()->json(['errors' => $validate->errors()], 422);
-        }
         $hotel = Hotel::find($id);
         $hotel->name = $request->input('name');
         $hotel->code = $request->input('code');
@@ -128,10 +100,21 @@ class HotelController extends Controller
 
         return Excel::download($export, 'hotels_in_' . $category->name . '.xlsx');
     }
-    public function import()
+    public function indexExcelCSV()
     {
-        Excel::import(new HotelsImport, 'users.xlsx');
+        return view('hotel.excel-csv-import');
+    }
+    public function importExcelCSV(Request $request)
+    {
+        $validatedData = $request->validate([
+            'file' => 'required',
+        ]);
 
-        return redirect('/')->with('success', 'All good!');
+        try {
+            Excel::import(new HotelsImport, $request->file('file'));
+            return redirect('/hotel')->with('status', 'The file has been excel imported to the database');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
 }
