@@ -12,7 +12,8 @@
                         <p class="text-red-500">Thêm mới thiếu nhi</p>
                     </div>
                     <h1 class="text-red-500 text-3xl font-bold text-center">
-                        Danh sách <br> Thiếu nhi Thánh Thể
+                        Danh sách <br />
+                        Thiếu nhi Thánh Thể
                     </h1>
                     <div class="w-1/3 ml-4">
                         <select
@@ -20,8 +21,8 @@
                             class="cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         >
                             <option value="">Tất cả niên khóa</option>
-                            <option v-for="child in children">
-                                {{ child.academy_year }}
+                            <option v-for="uniqueAcademyYear in Array.from(new Set(children.map(child => child.academy_year)))">
+                                {{ uniqueAcademyYear }}
                             </option>
                         </select>
                     </div>
@@ -110,6 +111,7 @@ export default {
     created() {
         this.fetchChildren();
     },
+
     methods: {
         fetchChildren() {
             axios
