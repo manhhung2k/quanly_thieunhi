@@ -13,16 +13,47 @@
                     </div>
                     <h1 class="text-red-500 text-3xl font-bold text-center">
                         Danh sách <br />
-                        Thiếu nhi Thánh Thể
+                        Thiếu nhi <br> Thánh Thể
                     </h1>
-                    <div class="w-1/3 ml-4">
+                    <div>
+                        <input type="text" v-model="searchLastName">
+                        <p class="mt-2 text-red-600">Tìm kiếm theo tên thiếu nhi</p>
+                    </div>
+                    <div class="ml-4">
                         <select
                             v-model="selectedAcademyYear"
                             class="cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         >
                             <option value="">Tất cả niên khóa</option>
-                            <option v-for="uniqueAcademyYear in Array.from(new Set(children.map(child => child.academy_year)))">
+                            <option
+                                v-for="uniqueAcademyYear in Array.from(
+                                    new Set(
+                                        children.map(
+                                            (child) => child.academy_year
+                                        )
+                                    )
+                                )"
+                            >
                                 {{ uniqueAcademyYear }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="ml-4">
+                        <select
+                            v-model="selectedStrawberry"
+                            class="cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        >
+                            <option value="">Tất cả Giáo xóm</option>
+                            <option
+                                v-for="uniqueStrawberry_church in Array.from(
+                                    new Set(
+                                        children.map(
+                                            (child) => child.strawberry_church
+                                        )
+                                    )
+                                )"
+                            >
+                                {{ uniqueStrawberry_church }}
                             </option>
                         </select>
                     </div>
@@ -106,6 +137,8 @@ export default {
         return {
             children: [],
             selectedAcademyYear: "",
+            selectedStrawberry: "",
+            searchLastName: "",
         };
     },
     created() {
@@ -164,12 +197,29 @@ export default {
     },
     computed: {
         filteredChildren() {
-            if (!this.selectedAcademyYear) {
+            if (
+                !this.selectedAcademyYear &&
+                !this.selectedStrawberry &&
+                !this.searchLastName
+            ) {
                 return this.children;
             }
-            return this.children.filter(
-                (child) => child.academy_year === this.selectedAcademyYear
-            );
+
+            return this.children.filter((child) => {
+                const matchAcademyYear =
+                    !this.selectedAcademyYear ||
+                    child.academy_year === this.selectedAcademyYear;
+                const matchStrawberry =
+                    !this.selectedStrawberry ||
+                    child.strawberry_church === this.selectedStrawberry;
+                const matchLastName =
+                    !this.searchLastName ||
+                    child.last_name
+                        .toLowerCase()
+                        .includes(this.searchLastName.toLowerCase());
+
+                return matchAcademyYear && matchStrawberry && matchLastName;
+            });
         },
     },
 };

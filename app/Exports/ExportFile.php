@@ -28,7 +28,7 @@ class ExportFile implements FromCollection, WithHeadings
     }
     public function headings(): array
     {
-        return ['ID', 'Tên Thánh và Họ', 'Tên', 'Ngày sinh', 'Giáo xóm', 'Niên khóa', 'Bố mẹ', 'Số điện thoại' ,'Giới tính','Giáo xứ','Điểm giữa học kỳ 1','Điểm học kỳ 1','Điểm giữa học kỳ 2','Điểm học kỳ 2'];
+        return ['ID', 'TÊN THÁNH - HỌ', 'TÊN', 'NGÀY SINH', 'GIÁO XÓM/HỌ', 'Niên khóa', 'TÊN THÁNH, HỌ VÀ TÊN BỐ', 'SỐ ĐT BỐ/MẸ' ,'GIỚI TÍNH','GIÁO XỨ','ĐIỂM GIỮA HỌC KỲ  1','ĐIỂM HỌC KỲ  1','ĐIỂM GIỮA HỌC KỲ 2','ĐIỂM HỌC KỲ 2'];
     }
 
 }
