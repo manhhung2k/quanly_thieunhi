@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\HotelController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -21,17 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Category
-Route::get('/category', [CategoryController::class,'index']);
-Route::post('/category/create', [CategoryController::class, 'store']);
-Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
-Route::get('/category/edit/{id}', [CategoryController::class, 'edit']);
-Route::post('/category/update/{id}', [CategoryController::class, 'update']);
 
 //Hotel
-Route::get('/hotel',[HotelController::class,'index']);
-Route::post('/hotel/create', [HotelController::class, 'store']);
-Route::delete('/hotel/{id}', [HotelController::class, 'destroy']);
-Route::get('/hotel/edit/{id}', [HotelController::class, 'edit']);
-Route::post('/hotel/update/{id}', [HotelController::class, 'update']);
+Route::get('/children',[ChildrenController::class,'index']);
+Route::post('/children/create',[ChildrenController::class,'store']);
+Route::delete('/children/{id}', [ChildrenController::class, 'destroy']);
+Route::get('/children/edit/{id}', [ChildrenController::class, 'edit']);
+Route::post('/children/update/{id}', [ChildrenController::class, 'update']);
 

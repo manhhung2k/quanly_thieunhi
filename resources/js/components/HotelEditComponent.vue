@@ -3,113 +3,158 @@
         <div
             class="bg-white w-1/2 flex justify-center items-center p-6 rounded-3xl shadow-lg shadow-orange-900"
         >
-            <div class="w-2/3">
+            <div class="">
                 <h1 class="text-red-300 text-3xl font-bold text-center">
-                    Hotel Edit
+                    Chỉnh sửa thông tin của Thiếu nhi Thánh Thể
                 </h1>
                 <form @submit.prevent="handleUpdate()">
-                    <div class="mt-3">
-                        <input
-                            type="file"
-                            ref="fileInput"
-                            @change="onFileChange"
-                        />
-                        <img
-                            v-if="imageUrl"
-                            :src="'/images/' + editedHotel.image"
-                            alt="Image"
-                            style="max-width: 200px; margin-top: 10px"
-                        />
-                        <div v-if="selectedFile" class="mt-2">
-                            <img
-                                :src="imagePreview"
-                                alt="Preview"
-                                style="max-width: 200px"
-                            />
-                            <button @click="removeImage" class="mt-2">
-                                Remove Image
-                            </button>
-                            <p v-if="errors.image" class="text-red-500">
-                                {{ errors.image[0] }}
-                            </p>
-                        </div>
-
-                    </div>
-                    <div>
-                        <label for="name">Name:</label>
-                        <input
-                            type="text"
-                            id="name"
-                            v-model="editedHotel.name"
-                        />
-                        <p v-if="errors.name" class="text-red-500">
-                            {{ errors.name[0] }}
-                        </p>
-                    </div>
-                    <div>
-                        <label for="code">Code:</label>
-                        <input
-                            type="text"
-                            id="code"
-                            v-model="editedHotel.code"
-                        />
-                        <p v-if="errors.code" class="text-red-500">
-                            {{ errors.code[0] }}
-                        </p>
-                    </div>
-                    <div>
-                        <label for="price_max">Price Max:</label>
-                        <input
-                            type="text"
-                            id="price_max"
-                            v-model="editedHotel.price_max"
-                        />
-                        <p v-if="errors.price_max" class="text-red-500">
-                            {{ errors.price_max[0] }}
-                        </p>
-                    </div>
-                    <div>
-                        <label for="price_max">Price Min:</label>
-                        <input
-                            type="text"
-                            id="price_max"
-                            v-model="editedHotel.price_min"
-                        />
-                        <p v-if="errors.price_min" class="text-red-500">
-                            {{ errors.price_min[0] }}
-                        </p>
-                    </div>
-                    <div class="flex gap-6 mt-3">
-                        <div class="float-left">
-                            <label for="category" class="mr-2">Category:</label>
-                            <select
-                                v-model="editedHotel.category_id"
-                                class="w-24"
-                            >
-                                <option
-                                    v-for="category in categories"
-                                    :value="category.id"
-                                    :key="category.id"
-                                    class="p-2 w-11"
+                    <div class="flex gap-28">
+                        <div>
+                            <div class="mt-3">
+                                <label for="first_name">Tên Thánh và Họ:</label><br>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    v-model="editedChildren.first_name"
+                                />
+                                <p
+                                    v-if="errors.first_name"
+                                    class="text-red-500"
                                 >
-                                    {{ category.name }}
-                                </option>
-                            </select>
-                            <p v-if="errors.category_id" class="text-red-500">
-                                {{ errors.category_id[0] }}
-                            </p>
+                                    {{ errors.first_name[0] }}
+                                </p>
+                            </div>
+                            <div class="mt-3">
+                                <label for="last_name">Tên:</label><br>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    v-model="editedChildren.last_name"
+                                />
+                                <p
+                                    v-if="errors.last_name"
+                                    class="text-red-500"
+                                >
+                                    {{ errors.last_name[0] }}
+                                </p>
+                            </div>
+                            <div>
+                                <label for="birth_date"
+                                    >Ngày tháng năm sinh:</label
+                                ><br>
+                                <input
+                                    type="date"
+                                    id="code"
+                                    v-model="editedChildren.birth_date"
+                                />
+
+                            </div>
+                            <div>
+                                <label for="gender">Giới tính:</label>
+                                <select id="gender" v-model="editedChildren.gender">
+                                  <option value="other">Other</option>
+                                  <option value="nam">Nam</option>
+                                  <option value="nu">Nữ</option>
+                                </select>
+
+                              </div>
                         </div>
-                        <div class="float-right">
-                            <label for="sale_day">Sale day:</label>
-                            <input
-                                type="date"
-                                id="price_max"
-                                v-model="editedHotel.sale_day"
-                                class="ml-3"
-                            />
-                            <p v-if="errors.sale_day" class="text-red-500">
-                                {{ errors.sale_day[0] }}
-                            </p>
+                        <div>
+                            <div>
+                                <label for="strawberry_church">Giáo xóm:</label><br>
+                                <input
+                                    type="text"
+                                    id="strawberry_church"
+                                    v-model="editedChildren.strawberry_church"
+                                />
+
+                            </div>
+                            <div>
+                                <label for="parish">Giáo xứ:</label><br>
+                                <input
+                                    type="text"
+                                    id="parish"
+                                    v-model="editedChildren.parish"
+                                />
+
+                            </div>
+                            <div>
+                                <label for="academy_year">Niên khóa:</label><br>
+                                <input
+                                    type="text"
+                                    id="academy_year"
+                                    v-model="editedChildren.academy_year"
+                                />
+
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="parents">Bố mẹ:</label><br>
+                                    <input
+                                        class=""
+                                        type="text"
+                                        id="parents"
+                                        v-model="editedChildren.parents"
+                                    />
+
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="phone_number"
+                                        >Số điện thoại:</label
+                                    ><br>
+                                    <input
+                                        class=""
+                                        type="text"
+                                        id="phone_number" maxlength="10"
+                                        v-model="editedChildren.phone_number"
+                                    />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mt-3">
+                                <label for="mid_semester_1"
+                                    >Điểm giữa học kỳ 1:</label
+                                ><br>
+                                <input
+                                    type="text"
+                                    id="mid_semester_1"
+                                    v-model="editedChildren.mid_semester_1"
+                                />
+
+                            </div>
+                            <div class="mt-3">
+                                <label for="semester_1">Điểm học kỳ 1:</label><br>
+                                <input
+                                    type="text"
+                                    id="semester_1"
+                                    v-model="editedChildren.semester_1"
+                                />
+
+                            </div>
+                            <div class="mt-3">
+                                <label for="mid_semester_2"
+                                    >Điểm giữa học kỳ 2:</label
+                                ><br>
+                                <input
+                                    type="text"
+                                    id="mid_semester_2"
+                                    v-model="editedChildren.mid_semester_2"
+                                />
+
+                            </div>
+                            <div class="mt-3">
+                                <label for="semester_2">Điểm học kỳ 2:</label><br>
+                                <input
+                                    type="text"
+                                    id="semester_2"
+                                    v-model="editedChildren.semester_2"
+                                />
+
+                            </div>
                         </div>
                     </div>
 
@@ -130,75 +175,27 @@ import axios from "axios";
 import Toastify from "toastify-js";
 
 export default {
-    props: ["hotels", "categories"],
+    props: ["children"],
     data() {
         return {
-            editedHotel: { ...this.hotels, ...this.categories },
-            categories: [],
+            editedChildren: { ...this.children },
             errors: {},
-            imageUrl: "",
-            selectedFile: "",
         };
     },
-    created() {
-        this.fetchCategories();
-        this.imageUrl = "/images/" + this.editedHotel.image;
-    },
-    computed: {
-        imagePreview() {
-            return this.selectedFile
-                ? URL.createObjectURL(this.selectedFile)
-                : null;
-        },
-    },
     methods: {
-        onFileChange(event) {
-            this.selectedFile = event.target.files[0];
-            this.imageUrl = "";
-        },
-        removeImage() {
-            this.selectedFile = null;
-        },
-        fetchCategories() {
-            axios
-                .get("/api/category")
-                .then((response) => {
-                    this.categories = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
         handleUpdate() {
-            const itemId = this.hotels.id;
-            let formData = new FormData();
-            formData.append("name", this.editedHotel.name);
-            formData.append("code", this.editedHotel.code);
-            formData.append("price_max", this.editedHotel.price_max);
-            formData.append("price_min", this.editedHotel.price_min);
-            formData.append("category_id", this.editedHotel.category_id);
-            if (!this.selectedFile) {
-                formData.append("image_1", this.editedHotel.image);
-            } else {
-                formData.append("image", this.selectedFile);
-            }
-
-            formData.append("sale_day", this.editedHotel.sale_day);
+            const itemId = this.children.id;
             axios
-                .post(`/api/hotel/update/${itemId}`, formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data", 
-                    },
-                })
+            .post(`/api/children/update/${itemId}`, this.editedChildren)
                 .then(() => {
                     Toastify({
-                        text: "Edit category successfully!",
+                        text: "Chỉnh sửa thông tin thành công!",
                         duration: 3000,
                         gravity: "top",
                         backgroundColor: "green",
                         stopOnFocus: true,
                     }).showToast();
-                    window.location.href = `/hotel`;
+                    window.location.href = `/children`;
                 })
                 .catch((error) => {
                     if (error.response.status === 422) {
@@ -206,7 +203,7 @@ export default {
                     } else {
                         console.error(error);
                         Toastify({
-                            text: "Failed edit category!",
+                            text: "Lỗi chỉnh sửa thông tin!",
                             duration: 3000,
                             gravity: "top",
                             backgroundColor: "red",
@@ -216,7 +213,7 @@ export default {
                 });
         },
         handleClose() {
-            window.location.href = `/hotel`;
+            window.location.href = `/children`;
         },
     },
 };

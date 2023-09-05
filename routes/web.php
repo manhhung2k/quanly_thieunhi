@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LayoutController;
 use Illuminate\Support\Facades\Route;
@@ -19,20 +21,14 @@ use Illuminate\Support\Facades\Route;
 //Layout
 Route::get('/', [LayoutController::class, 'index']);
 
-
-//Category
-Route::get('/category', [CategoryController::class, 'viewList'])->name('home');
-Route::get('/category/create',[CategoryController::class, 'viewCreate'])->name('viewCreate');
-Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category_edit');
-
 //Hotel
-Route::get('/hotel',[HotelController::class, 'viewHotel'])->name('hotel');
-Route::get('/hotel/create', [HotelController::class, 'viewCreate'])->name('create_hotel');
-Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel_edit');
+Route::get('/children',[ChildrenController::class, 'viewHotel'])->name('children');
+Route::get('/children/create', [ChildrenController::class, 'viewCreate'])->name('create_children');
+Route::get('/children/edit/{id}', [ChildrenController::class, 'edit'])->name('children_edit');
 
-Route::get('/hotel/export', [HotelController::class, 'export']);
+Route::get('/children/export', [ChildrenController::class, 'export']);
 // routes/web.php
 
-Route::get('/hotel/export-hotels/{category}', [HotelController::class,'exportHotels'])->name('export.hotels');
-Route::post('/hotel/importExcel', [HotelController::class,'importExcelCSV']);
-Route::get('/hotel/excel-csv-file', [HotelController::class, 'indexExcelCSV']);
+Route::get('/children/export-hotels/{category}', [ChildrenController::class,'exportHotels'])->name('export.children');
+Route::post('/children/importExcel', [ChildrenController::class,'importExcelCSV']);
+Route::get('/children/excel-csv-file', [ChildrenController::class, 'indexExcelCSV']);

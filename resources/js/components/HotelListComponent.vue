@@ -1,87 +1,88 @@
 <template>
     <div class="all_create h-screen flex justify-center items-center">
         <div
-            class="bg-white w-2/3 flex justify-center items-center p-6 rounded-3xl shadow-lg shadow-orange-900"
+            class="bg-white w-5/6 flex justify-center items-center p-6 rounded-3xl shadow-lg shadow-orange-900"
         >
             <div class="w-full">
                 <div class="flex gap-10 px-6 mx-auto">
                     <div
                         @click="handleCreate()"
-                        class="cursor-pointer bg-slate-400 rounded-xl p-2"
+                        class="cursor-pointer bg-slate-300 rounded-xl p-2 flex justify-center items-center"
                     >
-                        <p class="text-red-500">Create Hotel</p>
+                        <p class="text-red-500">Thêm mới thiếu nhi</p>
                     </div>
-                    <h1 class="text-red-300 text-3xl font-bold text-center">
-                        Hotel List
+                    <h1 class="text-red-500 text-3xl font-bold text-center">
+                        Danh sách <br> Thiếu nhi Thánh Thể
                     </h1>
                     <div class="w-1/3 ml-4">
                         <select
-                            v-model="selectedCategory"
+                            v-model="selectedAcademyYear"
                             class="cursor-pointer block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         >
-                            <option value="">All Categories</option>
-                            <option
-                                v-for="category in categories"
-                                :value="category.id"
-                                :key="category.id"
-                            >
-                                {{ category.name }}
+                            <option value="">Tất cả niên khóa</option>
+                            <option v-for="child in children">
+                                {{ child.academy_year }}
                             </option>
                         </select>
                     </div>
                     <div
                         @click="handleExport()"
-                        class="cursor-pointer bg-slate-400 rounded-xl p-2"
+                        class="cursor-pointer bg-slate-300 rounded-xl p-2 flex justify-center items-center"
                     >
                         <p class="text-red-500">Export Excel File</p>
                     </div>
                     <div
                         @click="handleImport()"
-                        class="cursor-pointer bg-slate-400 rounded-xl p-2"
+                        class="cursor-pointer bg-slate-300 rounded-xl p-2 flex justify-center items-center"
                     >
                         <p class="text-red-500">Import Excel File</p>
                     </div>
                 </div>
-
                 <div class="table-list pt-4 mt-10">
                     <table class="w-full -mt-4 table-auto">
                         <thead>
                             <tr class="text-center z-10">
-                                <th>Picture</th>
-                                <th>Name</th>
-                                <th>Code</th>
-                                <th>Price Max</th>
-                                <th>Price Min</th>
-                                <th>Category</th>
-                                <th>Sale Day</th>
+                                <th>Tên Thánh và Họ</th>
+                                <th>Tên</th>
+                                <th>Ngày Sinh</th>
+                                <th>Giới tính</th>
+                                <th>Giáo Xóm</th>
+                                <th>Giáo xứ</th>
+                                <th>Niên Khóa</th>
+                                <th>Bố Mẹ</th>
+                                <th>SDT Phụ huynh</th>
+                                <th>Điểm giữa học kỳ 1</th>
+                                <th>Điểm học kỳ 1</th>
+                                <th>Điểm giữa học kỳ 2</th>
+                                <th>Điểm học kỳ 2</th>
                                 <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr
-                                v-for="hotel in filteredHotels"
-                                :key="hotel.id"
+                                v-for="child in filteredChildren"
+                                :key="child.id"
                                 class="text-center mt-2 text-red-600"
                             >
+                                <td>{{ child.first_name }}</td>
+                                <td>{{ child.last_name }}</td>
+                                <td>{{ child.birth_date }}</td>
+                                <td>{{ child.gender }}</td>
+                                <td>{{ child.strawberry_church }}</td>
+                                <td>{{ child.parish }}</td>
+                                <td>{{ child.academy_year }}</td>
+                                <td>{{ child.parents }}</td>
+                                <td>{{ child.phone_number }}</td>
+                                <td>{{ child.mid_semester_1 }}</td>
+                                <td>{{ child.semester_1 }}</td>
+                                <td>{{ child.mid_semester_2 }}</td>
+                                <td>{{ child.semester_2 }}</td>
                                 <td>
-                                    <img
-                                        :src="'/images/' + hotel.image"
-                                        alt=""
-                                        class="h-10 w-10"
-                                    />
-                                </td>
-                                <td>{{ hotel.name }}</td>
-                                <td>{{ hotel.code }}</td>
-                                <td>{{ hotel.price_max }}</td>
-                                <td>{{ hotel.price_min }}</td>
-                                <td>{{ hotel.category.name }}</td>
-                                <td>{{ hotel.sale_day }}</td>
-                                <td>
-                                    <button @click="handleDelete(hotel.id)">
+                                    <button @click="handleDelete(child.id)">
                                         Delete
                                     </button>
                                     <button
-                                        @click="handleEditHotel(hotel.id)"
+                                        @click="handleEditChildren(child.id)"
                                         class="ml-4"
                                     >
                                         Edit
@@ -102,31 +103,19 @@ import Toastify from "toastify-js";
 export default {
     data() {
         return {
-            hotels: [],
-            categories: [],
-            selectedCategory: "",
+            children: [],
+            selectedAcademyYear: "",
         };
     },
     created() {
-        this.fetchHotels();
-        this.fetchCategories();
+        this.fetchChildren();
     },
     methods: {
-        fetchCategories() {
+        fetchChildren() {
             axios
-                .get("/api/category")
+                .get("/api/children")
                 .then((response) => {
-                    this.categories = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        fetchHotels() {
-            axios
-                .get("/api/hotel")
-                .then((response) => {
-                    this.hotels = response.data;
+                    this.children = response.data;
                 })
                 .catch((error) => {
                     console.error(error);
@@ -134,7 +123,7 @@ export default {
         },
         async handleDelete(itemId) {
             try {
-                await axios.delete(`/api/hotel/${itemId}`);
+                await axios.delete(`/api/children/${itemId}`);
                 Toastify({
                     text: "Delete category successfully!",
                     duration: 3000,
@@ -142,7 +131,7 @@ export default {
                     backgroundColor: "green",
                     stopOnFocus: true,
                 }).showToast();
-                this.fetchHotels();
+                this.fetchChildren();
             } catch (error) {
                 console.error(error);
                 Toastify({
@@ -155,29 +144,29 @@ export default {
             }
         },
         handleCreate() {
-            window.location.href = `/hotel/create`;
+            window.location.href = `/children/create`;
         },
-        handleEditHotel(itemId) {
-            window.location.href = `/hotel/edit/${itemId}`;
+        handleEditChildren(itemId) {
+            window.location.href = `/children/edit/${itemId}`;
         },
         handleExport() {
             if (this.selectedCategory) {
-                window.location.href = `/hotel/export-hotels/${this.selectedCategory}`;
+                window.location.href = `/children/export-hotels/${this.selectedCategory}`;
             } else {
-                window.location.href = `/hotel/export`;
+                window.location.href = `/children/export`;
             }
         },
         handleImport() {
-            window.location.href = `/hotel/excel-csv-file`;
-        }
+            window.location.href = `/children/excel-csv-file`;
+        },
     },
     computed: {
-        filteredHotels() {
-            if (!this.selectedCategory) {
-                return this.hotels;
+        filteredChildren() {
+            if (!this.selectedAcademyYear) {
+                return this.children;
             }
-            return this.hotels.filter(
-                (hotel) => hotel.category.id === this.selectedCategory
+            return this.children.filter(
+                (child) => child.academy_year === this.selectedAcademyYear
             );
         },
     },

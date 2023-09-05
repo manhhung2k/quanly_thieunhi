@@ -12,24 +12,23 @@ class ExportFile implements FromCollection, WithHeadings
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected $hotels;
+    protected $children;
 
-    public function __construct($hotels)
+    public function __construct($children)
     {
-        $this->hotels = $hotels;
+        $this->children = $children;
     }
 
     public function collection()
     {
-        return $this->hotels->map(function ($hotel) {
-            $hotelData = $hotel->toArray();
-            $hotelData['category_name'] = $hotel->category->name;
-            return $hotelData;
+        return $this->children->map(function ($child) {
+            $childData = $child->toArray();
+            return $childData;
         });
     }
     public function headings(): array
     {
-        return ['ID', 'Name', 'Code', 'Price Max', 'Price Min', 'Category Id', 'Sale Day', 'Created At' ,' Update At','Image', 'Category Name'];
+        return ['ID', 'Tên Thánh và Họ', 'Tên', 'Ngày sinh', 'Giáo xóm', 'Niên khóa', 'Bố mẹ', 'Số điện thoại' ,'Giới tính','Giáo xứ','Điểm giữa học kỳ 1','Điểm học kỳ 1','Điểm giữa học kỳ 2','Điểm học kỳ 2'];
     }
 
 }

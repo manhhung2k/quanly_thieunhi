@@ -2,8 +2,11 @@
 <div class="content">
     @yield('content')
 </div>
-<div id="app">
-    <div class="container mt-5">
+<div id="app" class="relative">
+    <div class="img_div w-full h-full ">
+        <img src="{{ asset('images/thieunhi.jpg') }}" alt="Background Image" class="rounded-3xl shadow-red-900 w-full image_background">
+    </div>
+    <div class="container mt-5 absolute top-5">
 
 
         @if (session('status'))
@@ -20,7 +23,7 @@
 
             <div class="card-body">
 
-                <form id="excel-csv-import-form" method="POST" action="{{ url('/hotel/importExcel') }}"
+                <form id="excel-csv-import-form" method="POST" action="{{ url('/children/importExcel') }}"
                     accept-charset="utf-8" enctype="multipart/form-data">
 
                     @csrf
